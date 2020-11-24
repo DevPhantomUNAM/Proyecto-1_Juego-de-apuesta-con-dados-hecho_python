@@ -14,11 +14,15 @@ class Tablero:
         self.img_tablero = img_tablero
         self.Apuesta = Apuesta
         self.TableroVerde = TableroVerde
+        self.dados = dados
 
     def crear_tableros(self):
+
         self.Apuesta = Frame(self.raiz,width=500,height=1000, bg ="#fff")
+        self.Apuesta.place(x=0,y=0)
+
         self.TableroVerde = Frame(self.raiz,width=901,height=800,bg="white")
-    
+        self.TableroVerde.place(x=500,y=0) 
 
     def obtener_imagenes(self): 
         self.img = Image.open('Ficha_1.png')
@@ -60,86 +64,158 @@ class Tablero:
         self.dados[6] = Image.open('6.png')
         self.dados[6] = ImageTk.PhotoImage(self.dados[6])
 
+    def pintar_tablero(self):
+
+        imagen_tablero = Label(self.TableroVerde, image=  self.img_tablero)
+        imagen_tablero.place(x=(0),y=0)
+    
+
+    def colocan_labels(self):
+
+        self.Apuesta.place(x=0,y=0) 
+
+        label_dinero = Label(self.Apuesta, text='Dinero:',  bg ="#fff")
+        label_dinero.config(font=("Verdana",30))
+        label_dinero.place(x=(20),y=10)
+
+        simbolo_dinero = Label(self.Apuesta, text='$',  bg ="#fff")
+        simbolo_dinero.config(font=("Verdana",30))
+        simbolo_dinero.place(x=(250),y=10)
+
+        Cantidad_dinero = Label(self.Apuesta, text='1000',  bg ="#fff")
+        Cantidad_dinero.config(font=("Verdana",30))
+        Cantidad_dinero.place(x=(300),y=10)
+
+
+        label_apuesta = Label(self.Apuesta, text='Apuesta:',  bg ="#fff")
+        label_apuesta.config(font=("Verdana",30))
+        label_apuesta.place(x=(20),y=60)
+
+        signo = Label(self.Apuesta, text='$',bg ="#fff")
+        signo.config(font=("Verdana",30))
+        signo.place(x=(250),y=60)
+
+        Cantidad_apuesta = Label(self.Apuesta, text= '0',bg ="#fff")
+        Cantidad_apuesta.config(font=("Verdana",30))
+        Cantidad_apuesta.place(x=300,y=60)
+
+    def colocan_botones_fichas(self):
+        btn_1= Button(self.Apuesta,image=self.img, bg ="#fff",text='+1') 
+        btn_1.place(x=70, y=120) 
+
+        btn_5= Button(self.Apuesta,image=self.img_5, bg ="#fff",text='+1') 
+        btn_5.place(x=130, y=120) 
+
+        btn_10= Button(self.Apuesta,image=self.img_10, bg ="#fff",text='+1') 
+        btn_10.place(x=190, y=120) 
+
+        btn_25= Button(self.Apuesta,image=self.img_25, bg ="#fff",text='+1') 
+        btn_25.place(x=250, y=120) 
+
+        btn_50= Button(self.Apuesta,image=self.img_50, bg ="#fff",text='+1') 
+        btn_50.place(x=310, y=120) 
+
+
+    def colorar_cotones_apuestas(self):
+        btn_a_3= Button(self.Apuesta, bg ="#fff",text='3',width=6,height=11,command=apostar_al_3) 
+        btn_a_3.place(x=17, y=180) 
+
+        btn_a_6= Button(self.Apuesta, bg ="#fff",text='6',width=6,height=3,command=apostar_al_6) 
+        btn_a_6.place(x=70, y=180) 
+
+        btn_a_5= Button(self.Apuesta, bg ="#fff",text='5',width=6,height=3,command=apostar_al_5) 
+        btn_a_5.place(x=70, y=240) 
+
+        btn_a_4= Button(self.Apuesta, bg ="#fff",text='4',width=6,height=3,command=apostar_al_4) 
+        btn_a_4.place(x=70, y=300) 
+
+        btn_a_4_6= Button(self.Apuesta, bg ="#fff",text='4 to 6',width=6,height=3,command=apostar_al_4_to_6) 
+        btn_a_4_6.place(x=70, y=360) 
+
+        btn_a_inpar= Button(self.Apuesta, bg ="#fff",text='Inpar',width=6,height=3,command=apostar_al_inpar) 
+        btn_a_inpar.place(x=70, y=420) 
+
+
+
+        btn_a_9= Button(self.Apuesta, bg ="#fff",text='9',width=6,height=3,command=apostar_al_9) 
+        btn_a_9.place(x=130, y=180) 
+
+        btn_a_8= Button(self.Apuesta, bg ="#fff",text='8',width=6,height=3,command=apostar_al_8) 
+        btn_a_8.place(x=130, y=240) 
+
+        btn_a_7= Button(self.Apuesta, bg ="#fff",text='7',width=6,height=3,command=apostar_al_7) 
+        btn_a_7.place(x=130, y=300) 
+
+        btn_a_7_9= Button(self.Apuesta, bg ="#fff",text='7 to 9',width=6,height=3,command=apostar_al_7_to_9) 
+        btn_a_7_9.place(x=130, y=360) 
+
+        btn_a_par= Button(self.Apuesta, bg ="#fff",text='Par',width=6,height=3,command=apostar_al_par) 
+        btn_a_par.place(x=130, y=420) 
+
+
+
+        btn_a_12= Button(self.Apuesta, bg ="#fff",text='12',width=6,height=3,command=apostar_al_12) 
+        btn_a_12.place(x=190, y=180) 
+
+        btn_a_11= Button(self.Apuesta, bg ="#fff",text='11',width=6,height=3,command=apostar_al_11) 
+        btn_a_11.place(x=190, y=240) 
+
+        btn_a_10= Button(self.Apuesta, bg ="#fff",text='10',width=6,height=3,command=apostar_al_10) 
+        btn_a_10.place(x=190, y=300) 
+
+        btn_a_4_6= Button(self.Apuesta, bg ="#fff",text='10 to 12',width=6,height=3,command=apostar_al_10_to_12) 
+        btn_a_4_6.place(x=190, y=360) 
+
+
+        btn_a_rojo= Button(self.Apuesta, bg ="#fff",text='Rojo',width=6,height=3,command=apostar_al_rojo) 
+        btn_a_rojo.place(x=190, y=420) 
+
+        btn_a_15= Button(self.Apuesta, bg ="#fff",text='15',width=6,height=3,command=apostar_al_15) 
+        btn_a_15.place(x=250, y=180) 
+
+        btn_a_14= Button(self.Apuesta, bg ="#fff",text='14',width=6,height=3,command=apostar_al_14) 
+        btn_a_14.place(x=250, y=240) 
+
+        btn_a_13= Button(self.Apuesta, bg ="#fff",text='13',width=6,height=3,command=apostar_al_13) 
+        btn_a_13.place(x=250, y=300) 
+
+        btn_a_13_15= Button(self.Apuesta, bg ="#fff",text='13 to 15',width=6,height=3,command=apostar_al_13_to_15) 
+        btn_a_13_15.place(x=250, y=360) 
+
+        btn_a_negro= Button(Apuesta, bg ="#fff",text='Negro',width=6,height=3,command=apostar_al_negro) 
+        btn_a_negro.place(x=250, y=420) 
+
+        btn_a_18= Button(self.Apuesta, bg ="#fff",text='18',width=6,height=3,command=apostar_al_18) 
+        btn_a_18.place(x=310, y=180) 
+
+        btn_a_17= Button(self.Apuesta, bg ="#fff",text='17',width=6,height=3,command=apostar_al_17) 
+        btn_a_17.place(x=310, y=240) 
+
+        btn_a_16= Button(self.Apuesta, bg ="#fff",text='16',width=6,height=3,command=apostar_al_16) 
+        btn_a_16.place(x=310, y=300) 
+
+        btn_a_16_18= Button(self.Apuesta, bg ="#fff",text='16 to 18',width=6,height=3,command=apostar_al_16_to_18) 
+        btn_a_16_18.place(x=310, y=360) 
+
+        btn_a_18= Button(self.Apuesta, bg ="#fff",text='3 colum',width=6,height=3,command=apostar_al_colum_3) 
+        btn_a_18.place(x=370, y=180) 
+
+        btn_a_17= Button(self.Apuesta, bg ="#fff",text='2 colum',width=6,height=3,command=apostar_al_colum_2) 
+        btn_a_17.place(x=370, y=240) 
+
+        btn_a_16= Button(self.Apuesta, bg ="#fff",text='1 colum',width=6,height=3,command=apostar_al_colum_1) 
+        btn_a_16.place(x=370, y=300) 
+
+        tirar= Button(self.Apuesta, bg ="#fff",text='Tirar dados',command= tirar_dados) 
+        tirar.config(font=("Verdana",20))
+        tirar.place(x=150, y=480) 
+
+        tirar= Button(self.Apuesta, bg ="#fff",text='Limpiar',command= limpiar) 
+        tirar.config(font=("Verdana",20))
+        tirar.place(x=170, y=540) 
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    # def crear_tablero_apuesta(self):
-        
-    #     self.Apuesta.place(x=0,y=0) 
-
-    #     label_dinero = Label(self.Apuesta, text='Dinero:',  bg ="#fff")
-    #     label_dinero.config(font=("Verdana",30))
-    #     label_dinero.place(x=(20),y=10)
-
-    #     simbolo_dinero = Label(self.Apuesta, text='$',  bg ="#fff")
-    #     simbolo_dinero.config(font=("Verdana",30))
-    #     simbolo_dinero.place(x=(250),y=10)
-
-    #     Cantidad_dinero = Label(self.Apuesta, text='1000',  bg ="#fff")
-    #     Cantidad_dinero.config(font=("Verdana",30))
-    #     Cantidad_dinero.place(x=(300),y=10)
-
-
-    #     label_apuesta = Label(self.Apuesta, text='Apuesta:',  bg ="#fff")
-    #     label_apuesta.config(font=("Verdana",30))
-    #     label_apuesta.place(x=(20),y=60)
-
-    #     signo = Label(self.Apuesta, text='$',bg ="#fff")
-    #     signo.config(font=("Verdana",30))
-    #     signo.place(x=(250),y=60)
-
-    #     Cantidad_apuesta = Label(self.Apuesta, text= '0',bg ="#fff")
-    #     Cantidad_apuesta.config(font=("Verdana",30))
-    #     Cantidad_apuesta.place(x=(300),y=60)
-
-    # def crear_imagenes(self):
-    #     
-
-    #     btn_1= Button(self.Apuesta,image=self.img, bg ="#fff",text='+1',command=aumentar_apuesta_1) 
-    #     btn_1.place(x=70, y=120) 
-
-    #     
-
-    #     btn_5= Button(self.Apuesta,image=self.img_5, bg ="#fff",text='+1',command=aumentar_apuesta_5) 
-    #     btn_5.place(x=130, y=120) 
-
-    #     
-
-    #     btn_10= Button(self.Apuesta,image=self.img_10, bg ="#fff",text='+1',command=aumentar_apuesta_10) 
-    #     btn_10.place(x=190, y=120) 
-
-    #    
-
-    #     btn_25= Button(self.Apuesta,image=self.img_25, bg ="#fff",text='+1',command=aumentar_apuesta_25) 
-    #     btn_25.place(x=250, y=120) 
-
-    #     
-
-    #     btn_50= Button(self.Apuesta,image=self.img_50, bg ="#fff",text='+1',command=aumentar_apuesta_50) 
-    #     btn_50.place(x=310, y=120) 
-
-    #     
-
-    #     self.img_tablero= Image.open('Tablero.png')
-    #     self.img_tablero= ImageTk.PhotoImage(self.img_tablero)
-
-    # def crear_tablero_ruleta(self):
-    #     Tablero = Frame(raiz,width=901,height=800,bg="white")
-    #     Tablero.place(x=500,y=0) 
-
-    #     imagen_tablero = Label(Tablero, image=img_tablero)
-    #     imagen_tablero.place(x=(0),y=0)

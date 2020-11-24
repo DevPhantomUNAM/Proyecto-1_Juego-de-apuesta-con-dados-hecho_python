@@ -8,7 +8,15 @@ def main():
     prueba = Tablero(raiz)   
     
     prueba.crear_tableros()
-   
+    prueba.obtener_imagenes()
+    
+    prueba.pintar_tablero()
+    prueba.colocan_labels()
+    prueba.colocan_botones_fichas()
+
+
+
+
     raiz.mainloop()
 
 if __name__ == "__main__":
