@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import PhotoImage
 from PIL import Image,ImageTk
 
+from logica import Funcionalidad
 
 class Tablero:
     def __init__(self,raiz,img='',img_5='',img_25='',img_50='',img_100='',img_tablero='',Apuesta='',TableroVerde='',dados=[0,1,2,3,4,5,6]):
@@ -15,6 +16,11 @@ class Tablero:
         self.Apuesta = Apuesta
         self.TableroVerde = TableroVerde
         self.dados = dados
+        self.Cantidad_apuesta = ''
+
+
+
+        self.Funcionalidad = Funcionalidad()
 
     def crear_tableros(self):
 
@@ -95,127 +101,134 @@ class Tablero:
         signo.config(font=("Verdana",30))
         signo.place(x=(250),y=60)
 
-        Cantidad_apuesta = Label(self.Apuesta, text= '0',bg ="#fff")
-        Cantidad_apuesta.config(font=("Verdana",30))
-        Cantidad_apuesta.place(x=300,y=60)
+        self.Cantidad_apuesta = Label(self.Apuesta, text= '0',bg ="#fff")
+        self.Cantidad_apuesta.config(font=("Verdana",30))
+        self.Cantidad_apuesta.place(x=300,y=60)
 
     def colocan_botones_fichas(self):
-        btn_1= Button(self.Apuesta,image=self.img, bg ="#fff",text='+1') 
-        btn_1.place(x=70, y=120) 
+        self.btn_1= Button(self.Apuesta,image=self.img, bg ="#fff",text='+1') 
+        self.btn_1.place(x=70, y=120) 
 
-        btn_5= Button(self.Apuesta,image=self.img_5, bg ="#fff",text='+1') 
-        btn_5.place(x=130, y=120) 
+        self.btn_5= Button(self.Apuesta,image=self.img_5, bg ="#fff",text='+1') 
+        self.btn_5.place(x=130, y=120) 
 
-        btn_10= Button(self.Apuesta,image=self.img_10, bg ="#fff",text='+1') 
-        btn_10.place(x=190, y=120) 
+        self.btn_10= Button(self.Apuesta,image=self.img_10, bg ="#fff",text='+1') 
+        self.btn_10.place(x=190, y=120) 
 
-        btn_25= Button(self.Apuesta,image=self.img_25, bg ="#fff",text='+1') 
-        btn_25.place(x=250, y=120) 
+        self.btn_25= Button(self.Apuesta,image=self.img_25, bg ="#fff",text='+1') 
+        self.btn_25.place(x=250, y=120) 
 
-        btn_50= Button(self.Apuesta,image=self.img_50, bg ="#fff",text='+1') 
-        btn_50.place(x=310, y=120) 
+        self.btn_50= Button(self.Apuesta,image=self.img_50, bg ="#fff",text='+1') 
+        self.btn_50.place(x=310, y=120) 
 
 
     def colorar_cotones_apuestas(self):
-        btn_a_3= Button(self.Apuesta, bg ="#fff",text='3',width=6,height=11,command=apostar_al_3) 
-        btn_a_3.place(x=17, y=180) 
+        self.btn_a_3= Button(self.Apuesta, bg ="#fff",text='3',width=6,height=11) 
+        self.btn_a_3.place(x=17, y=180) 
 
-        btn_a_6= Button(self.Apuesta, bg ="#fff",text='6',width=6,height=3,command=apostar_al_6) 
-        btn_a_6.place(x=70, y=180) 
+        self.btn_a_6= Button(self.Apuesta, bg ="#fff",text='6',width=6,height=3) 
+        self.btn_a_6.place(x=70, y=180) 
 
-        btn_a_5= Button(self.Apuesta, bg ="#fff",text='5',width=6,height=3,command=apostar_al_5) 
-        btn_a_5.place(x=70, y=240) 
+        self.btn_a_5= Button(self.Apuesta, bg ="#fff",text='5',width=6,height=3) 
+        self.btn_a_5.place(x=70, y=240) 
 
-        btn_a_4= Button(self.Apuesta, bg ="#fff",text='4',width=6,height=3,command=apostar_al_4) 
-        btn_a_4.place(x=70, y=300) 
+        self.btn_a_4= Button(self.Apuesta, bg ="#fff",text='4',width=6,height=3) 
+        self.btn_a_4.place(x=70, y=300) 
 
-        btn_a_4_6= Button(self.Apuesta, bg ="#fff",text='4 to 6',width=6,height=3,command=apostar_al_4_to_6) 
-        btn_a_4_6.place(x=70, y=360) 
+        self.btn_a_4_6= Button(self.Apuesta, bg ="#fff",text='4 to 6',width=6,height=3) 
+        self.btn_a_4_6.place(x=70, y=360) 
 
-        btn_a_inpar= Button(self.Apuesta, bg ="#fff",text='Inpar',width=6,height=3,command=apostar_al_inpar) 
-        btn_a_inpar.place(x=70, y=420) 
+        self.btn_a_inpar= Button(self.Apuesta, bg ="#fff",text='Inpar',width=6,height=3) 
+        self.btn_a_inpar.place(x=70, y=420) 
 
+        self.btn_a_9= Button(self.Apuesta, bg ="#fff",text='9',width=6,height=3) 
+        self.btn_a_9.place(x=130, y=180) 
 
+        self.btn_a_8= Button(self.Apuesta, bg ="#fff",text='8',width=6,height=3) 
+        self.btn_a_8.place(x=130, y=240) 
 
-        btn_a_9= Button(self.Apuesta, bg ="#fff",text='9',width=6,height=3,command=apostar_al_9) 
-        btn_a_9.place(x=130, y=180) 
+        self.btn_a_7= Button(self.Apuesta, bg ="#fff",text='7',width=6,height=3) 
+        self.btn_a_7.place(x=130, y=300) 
 
-        btn_a_8= Button(self.Apuesta, bg ="#fff",text='8',width=6,height=3,command=apostar_al_8) 
-        btn_a_8.place(x=130, y=240) 
+        self.btn_a_7_9= Button(self.Apuesta, bg ="#fff",text='7 to 9',width=6,height=3) 
+        self.btn_a_7_9.place(x=130, y=360) 
 
-        btn_a_7= Button(self.Apuesta, bg ="#fff",text='7',width=6,height=3,command=apostar_al_7) 
-        btn_a_7.place(x=130, y=300) 
+        self.btn_a_par= Button(self.Apuesta, bg ="#fff",text='Par',width=6,height=3) 
+        self.btn_a_par.place(x=130, y=420) 
 
-        btn_a_7_9= Button(self.Apuesta, bg ="#fff",text='7 to 9',width=6,height=3,command=apostar_al_7_to_9) 
-        btn_a_7_9.place(x=130, y=360) 
+        self.btn_a_12= Button(self.Apuesta, bg ="#fff",text='12',width=6,height=3) 
+        self.btn_a_12.place(x=190, y=180) 
 
-        btn_a_par= Button(self.Apuesta, bg ="#fff",text='Par',width=6,height=3,command=apostar_al_par) 
-        btn_a_par.place(x=130, y=420) 
+        self.btn_a_11= Button(self.Apuesta, bg ="#fff",text='11',width=6,height=3) 
+        self.btn_a_11.place(x=190, y=240) 
 
+        self.btn_a_10= Button(self.Apuesta, bg ="#fff",text='10',width=6,height=3) 
+        self.btn_a_10.place(x=190, y=300) 
 
+        self.btn_a_4_6= Button(self.Apuesta, bg ="#fff",text='10 to 12',width=6,height=3) 
+        self.btn_a_4_6.place(x=190, y=360) 
 
-        btn_a_12= Button(self.Apuesta, bg ="#fff",text='12',width=6,height=3,command=apostar_al_12) 
-        btn_a_12.place(x=190, y=180) 
+        self.btn_a_rojo= Button(self.Apuesta, bg ="#fff",text='Rojo',width=6,height=3) 
+        self.btn_a_rojo.place(x=190, y=420) 
 
-        btn_a_11= Button(self.Apuesta, bg ="#fff",text='11',width=6,height=3,command=apostar_al_11) 
-        btn_a_11.place(x=190, y=240) 
+        self.btn_a_15= Button(self.Apuesta, bg ="#fff",text='15',width=6,height=3) 
+        self.btn_a_15.place(x=250, y=180) 
 
-        btn_a_10= Button(self.Apuesta, bg ="#fff",text='10',width=6,height=3,command=apostar_al_10) 
-        btn_a_10.place(x=190, y=300) 
+        self.btn_a_14= Button(self.Apuesta, bg ="#fff",text='14',width=6,height=3) 
+        self.btn_a_14.place(x=250, y=240) 
 
-        btn_a_4_6= Button(self.Apuesta, bg ="#fff",text='10 to 12',width=6,height=3,command=apostar_al_10_to_12) 
-        btn_a_4_6.place(x=190, y=360) 
+        self.btn_a_13= Button(self.Apuesta, bg ="#fff",text='13',width=6,height=3) 
+        self.btn_a_13.place(x=250, y=300) 
 
+        self.btn_a_13_15= Button(self.Apuesta, bg ="#fff",text='13 to 15',width=6,height=3) 
+        self.btn_a_13_15.place(x=250, y=360) 
 
-        btn_a_rojo= Button(self.Apuesta, bg ="#fff",text='Rojo',width=6,height=3,command=apostar_al_rojo) 
-        btn_a_rojo.place(x=190, y=420) 
+        self.btn_a_negro= Button(self.Apuesta, bg ="#fff",text='Negro',width=6,height=3) 
+        self.btn_a_negro.place(x=250, y=420) 
 
-        btn_a_15= Button(self.Apuesta, bg ="#fff",text='15',width=6,height=3,command=apostar_al_15) 
-        btn_a_15.place(x=250, y=180) 
+        self.btn_a_18= Button(self.Apuesta, bg ="#fff",text='18',width=6,height=3) 
+        self.btn_a_18.place(x=310, y=180) 
 
-        btn_a_14= Button(self.Apuesta, bg ="#fff",text='14',width=6,height=3,command=apostar_al_14) 
-        btn_a_14.place(x=250, y=240) 
+        self.btn_a_17= Button(self.Apuesta, bg ="#fff",text='17',width=6,height=3) 
+        self.btn_a_17.place(x=310, y=240) 
 
-        btn_a_13= Button(self.Apuesta, bg ="#fff",text='13',width=6,height=3,command=apostar_al_13) 
-        btn_a_13.place(x=250, y=300) 
+        self.btn_a_16= Button(self.Apuesta, bg ="#fff",text='16',width=6,height=3) 
+        self.btn_a_16.place(x=310, y=300) 
 
-        btn_a_13_15= Button(self.Apuesta, bg ="#fff",text='13 to 15',width=6,height=3,command=apostar_al_13_to_15) 
-        btn_a_13_15.place(x=250, y=360) 
+        self.btn_a_16_18= Button(self.Apuesta, bg ="#fff",text='16 to 18',width=6,height=3) 
+        self.btn_a_16_18.place(x=310, y=360) 
 
-        btn_a_negro= Button(Apuesta, bg ="#fff",text='Negro',width=6,height=3,command=apostar_al_negro) 
-        btn_a_negro.place(x=250, y=420) 
+        self.btn_a_18= Button(self.Apuesta, bg ="#fff",text='3 colum',width=6,height=3) 
+        self.btn_a_18.place(x=370, y=180) 
 
-        btn_a_18= Button(self.Apuesta, bg ="#fff",text='18',width=6,height=3,command=apostar_al_18) 
-        btn_a_18.place(x=310, y=180) 
+        self.btn_a_17= Button(self.Apuesta, bg ="#fff",text='2 colum',width=6,height=3) 
+        self.btn_a_17.place(x=370, y=240) 
 
-        btn_a_17= Button(self.Apuesta, bg ="#fff",text='17',width=6,height=3,command=apostar_al_17) 
-        btn_a_17.place(x=310, y=240) 
+        self.btn_a_16= Button(self.Apuesta, bg ="#fff",text='1 colum',width=6,height=3) 
+        self.btn_a_16.place(x=370, y=300) 
 
-        btn_a_16= Button(self.Apuesta, bg ="#fff",text='16',width=6,height=3,command=apostar_al_16) 
-        btn_a_16.place(x=310, y=300) 
+        self.tirar= Button(self.Apuesta, bg ="#fff",text='Tirar dados') 
+        self.tirar.config(font=("Verdana",20))
+        self.tirar.place(x=150, y=480) 
 
-        btn_a_16_18= Button(self.Apuesta, bg ="#fff",text='16 to 18',width=6,height=3,command=apostar_al_16_to_18) 
-        btn_a_16_18.place(x=310, y=360) 
+        self.limpiar = Button(self.Apuesta, bg ="#fff",text='Limpiar') 
+        self.limpiar.config(font=("Verdana",20))
+        self.limpiar.place(x=170, y=540) 
 
-        btn_a_18= Button(self.Apuesta, bg ="#fff",text='3 colum',width=6,height=3,command=apostar_al_colum_3) 
-        btn_a_18.place(x=370, y=180) 
+    def agregar_funciones_botones(self):
+        self.limpiar['command'] = self.fun_limpiar
 
-        btn_a_17= Button(self.Apuesta, bg ="#fff",text='2 colum',width=6,height=3,command=apostar_al_colum_2) 
-        btn_a_17.place(x=370, y=240) 
+        Cantidad_apuesta['text'] = cantidad_apuesta
 
-        btn_a_16= Button(self.Apuesta, bg ="#fff",text='1 colum',width=6,height=3,command=apostar_al_colum_1) 
-        btn_a_16.place(x=370, y=300) 
+        self.btn_1['command'] = self.Funcionalidad.aumentar_apuesta_1
 
-        tirar= Button(self.Apuesta, bg ="#fff",text='Tirar dados',command= tirar_dados) 
-        tirar.config(font=("Verdana",20))
-        tirar.place(x=150, y=480) 
-
-        tirar= Button(self.Apuesta, bg ="#fff",text='Limpiar',command= limpiar) 
-        tirar.config(font=("Verdana",20))
-        tirar.place(x=170, y=540) 
-
-
-
+    def fun_limpiar(self):   
+        
+        imagen_tablero = Label(self.TableroVerde, image=self. img_tablero)
+        imagen_tablero.place(x=(0),y=0)
+        
+        limpiada = Label(self.Apuesta, width= 500, height=100,  bg ="#fff")
+        limpiada.place(x=70,y=640)
 
 
 
