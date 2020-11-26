@@ -72,11 +72,42 @@ Y para que nuestra interfaz se muestre, debemos colocar el loop que debe ir al f
 raiz.mainloop()
 ```
 
-Con esto ya podemos correr nuestro programa y nos despelgara una ventada
+Con esto ya podemos correr nuestro programa y nos desplegara una ventada
 
-## 4. Crear la estructura
+## 4. Asignar los recursos de imagenes
+*Este codigo siempre ira antes de raiz.mainloop()*
+Antes de empezar a crear nuestra estructura, estaremos creando las imagenes que estaremos utilizando para nuestros frames, borones y labels.
 
+Para mandar a llamar una imagen, y redimencionarla, utilizaremos ```img = Image.open('Ficha_1')``` y despues ```img = ImageTk.PhotoImage(img)``` y con esto ya contamos con la imagen para la Ficha 1 y haremos el proceso para todas las imagenes.
+
+```
+img = Image.open('Ficha_1.png')
+img = ImageTk.PhotoImage(img)
+
+img_5 = Image.open('Ficha_5.png')
+img_5 = ImageTk.PhotoImage(img_5)
+
+img_10 = Image.open('Ficha_10.png')
+img_10 = ImageTk.PhotoImage(img_10)
+
+img_25 = Image.open('Ficha_25.png')
+img_25 = ImageTk.PhotoImage(img_25)
+
+img_50 = Image.open('Ficha_50.png')
+img_50 = ImageTk.PhotoImage(img_50)
+
+img_100 = Image.open('Ficha_100.png')
+img_100 = ImageTk.PhotoImage(img_100)
+
+img_tablero= Image.open('Tablero.png')
+img_tablero= ImageTk.PhotoImage(img_tablero)
+
+```
+
+## 5. Crear la estructura
+*Este codigo siempre ira antes de raiz.mainloop()*
 Para la estructura, debemos definir los lugares donde colocaremos nuestros elementos.
+
 
 Yo usare dos Frames para esto.
 
@@ -93,7 +124,7 @@ Tablero = Frame(raiz,width=901,height=800,bg="white")
 Tablero.place(x=500,y=0) 
 ```
 
-### 4.1 Apuesta
+### 5.1 Apuesta
 
 Para el Frame de apuesta, defini cuales son los elementos que deben aparecer al usuario:
 
@@ -104,7 +135,7 @@ Para el Frame de apuesta, defini cuales son los elementos que deben aparecer al 
 * Un boton para tirar dados
 * Un boton para limpiar tablero
 
-#### 4.1.1 Labels de Dinero y apuesta
+#### 5.1.1 Labels de Dinero y apuesta
 
 Para pintar los 6 labels que usaremos (2 para el texto "Dinero" y "Apuesta", 2 para los signos "$" y los ultimos 2 que seran dinámicos para mostrar sus respectivos estados
 
@@ -138,4 +169,54 @@ Cantidad_apuesta.config(font=("Verdana",30))
 Cantidad_apuesta.place(x=(300),y=60)
 ```
 
+Corre el código y ya te debe aparecer así.
+
 ![](https://raw.githubusercontent.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/master/assets/Labels_dinero.png)
+
+
+#### 5.1.2 Creando instancias de botones para colocar las fichas
+*Este codigo siempre ira antes de raiz.mainloop()*
+
+Para crear un botton, utilizamos la instancia **Button** que al igual que label, tambien recibe parametros para su configuración.
+
+```
+btn_1= Button(Apuesta,image=img, bg ="#fff",text='+1',command=aumentar_apuesta_1) 
+btn_1.place(x=70, y=120) 
+```
+Este boton tiene una llamada a una función ```command = aumentar_apuesta_1``` por el momento la puedes borrar pero para que puedas visualizar que de esta forma, más adelante estaremos mandando a llamar las funciones correwspondientes a cada boton.
+
+Quedaria así:
+
+```
+btn_1= Button(Apuesta,image=img, bg ="#fff",text='+1') 
+btn_1.place(x=70, y=120) 
+```
+Tambien en un parametro **image** le estamos asignando el valor **img** esto viene de la ficha 1 que hicimos en el apartado 4
+
+Así que aplicaremos la misma idea a los botones restantes. Recuerda borrarles su funcion para que no marque error.
+
+```
+btn_1= Button(Apuesta,image=img, bg ="#fff",text='+1',command=aumentar_apuesta_1) 
+btn_1.place(x=70, y=120) 
+
+btn_5= Button(Apuesta,image=img_5, bg ="#fff",text='+1',command=aumentar_apuesta_5) 
+btn_5.place(x=130, y=120) 
+
+btn_10= Button(Apuesta,image=img_10, bg ="#fff",text='+1',command=aumentar_apuesta_10) 
+btn_10.place(x=190, y=120) 
+
+btn_25= Button(Apuesta,image=img_25, bg ="#fff",text='+1',command=aumentar_apuesta_25) 
+btn_25.place(x=250, y=120) 
+
+btn_50= Button(Apuesta,image=img_50, bg ="#fff",text='+1',command=aumentar_apuesta_50) 
+btn_50.place(x=310, y=120) 
+
+btn_100= Button(Apuesta,image=img_100, bg ="#fff",text='+1',command=aumentar_apuesta_100) 
+btn_100.place(x=370, y=120) 
+```
+
+Ya puedes correr el código despues de haberles quitado el aparemtro command y el valor y te debe aparecer así:
+
+![](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/assets/Botones_apuesta.png?raw=true)
+
+
