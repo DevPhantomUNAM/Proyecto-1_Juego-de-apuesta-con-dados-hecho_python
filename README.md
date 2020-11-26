@@ -6,6 +6,12 @@
 Videojuego diseñado para apostar a un formato donde se tiran **3 dados** y la suma del resultado de cada uno, es el valor que se determinar para un tablero donde se hacen las apuestas.
 
 ## Contenido 
+1. Diseño de material gráfico
+    1. Diseño del tablero
+    2. Diseño de las fichas para apostar 
+    3. Diseño de los 6 dados
+2. Librerias
+
 
 1. Diseño de material gráfico para el videojuego.
 2. Librerias
@@ -385,7 +391,7 @@ def aumentar_apuesta_1():
         Cantidad_apuesta['text'] = cantidad_apuesta
 ```
 
-Estamos utilizando 2 variables que cambian ```cantidad_apuesta``` y ```cantidad_apuesta_sin_modificar``` que se utilizaran para el label Apuesta y el calculo de fichas a poner. Tambien evaluaremos que si aun podemos apostar siempre y cuando no exeda el dinero total.
+Estamos utilizando 2 variables que cambian ```cantidad_apuesta``` y ```cantidad_apuesta_sin_modificar``` que se utilizaran para el label Apuesta y el cálculo de fichas a poner. Tambien evaluaremos que si aun podemos apostar siempre y cuando no exeda el dinero total.
 
 Y crearemos las funciones para las funcionales Ficha 1, 5, 10, 25, 50 y 100
 
@@ -558,7 +564,7 @@ def apostar_al_par():
         cantidad_apuesta = cantidad_apuesta - (fichas*1)
  ```
 
-Y la ponemos antes de ```Apostar_al_par()```. Lo que hace es hacer el calculo de la apuesta empezando por la más grande de 100 y difividarlas en fichas correspondientes y se pongan en el tablero.
+Y la ponemos antes de ```Apostar_al_par()```. Lo que hace es hacer el cálculo de la apuesta empezando por la más grande de 100 y difividarlas en fichas correspondientes y se pongan en el tablero.
 
 Crear un labels100 y le colocan la imagen de la ficha correspondiente y la posición dada por los aprametros.
 
@@ -571,32 +577,51 @@ Nuestro formato es el sigueinte:
 La apuesta consiste en una lista de 3 elementos [v1,v2,v3] donde:
 
 V1: Es el tipo de apuesta:
+
   0: A Pares y Nones
+  
   1: A color
+  
   2: A fila
+  
   3: A Columna
+  
   4: A Numero
+  
 V2: Modo de apuesta dependiendo de V1
+
   0:  1: Al inpar
+  
   0:  2: Al par
   
+  
   1:  1: A color Negro
+  
   1:  2: A color Rojo
   
+  
   2:  0: Columnas correspondientes al aparatodo 1.1
+  
   2:  1: Columnas correspondientes al aparatodo 1.1
+  
   2:  2: Columnas correspondientes al aparatodo 1.1
   
+  
   3:  0: Filas correspondientes al apartado 1.1
+  
   3:  1: Filas correspondientes al apartado 1.1
+  
   3:  2: Filas correspondientes al apartado 1.1
+  
   3:  3: Filas correspondientes al apartado 1.1
+  
   3:  4: Filas correspondientes al apartado 1.1
   
   4:  1: Apuesta correspondiente a Numero 1
   ...
 
 V3: El valor de apuesta que se le hacia
+
   [0,1,500]  Se hacia una apuesta a Pares y Nones, apostandole al Inpar y apostando 500
   
 Así que se sumaran cada una de las apuestas en la lista
