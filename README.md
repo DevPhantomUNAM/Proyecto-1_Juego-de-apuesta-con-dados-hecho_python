@@ -75,3 +75,21 @@ raiz.mainloop()
 Con esto ya podemos correr nuestro programa y nos despelgara una ventada
 
 ## 4. Crear la estructura
+
+Para la estructura, debemos definir los lugares donde colocaremos nuestros elementos.
+
+Yo usare dos Frames para esto.
+
+* Frame para las apuestas
+* Frame para el tablero
+
+```
+Apuesta = Frame(raiz,width=500,height=1000, bg ="#fff")
+Apuesta.place(x=0,y=0) 
+```
+
+```
+Tablero = Frame(raiz,width=901,height=800,bg="white")
+Tablero.place(x=500,y=0) 
+```
+
