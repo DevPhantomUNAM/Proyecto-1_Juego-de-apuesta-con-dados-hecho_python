@@ -1132,8 +1132,7 @@ def tirar():
     global apuesta
     
     tirar_dados()
-############################################################################
-############################################################################   LIMPIAR
+
 def limpiar():   
     imagen_tablero = Label(Tablero, image=img_tablero)
     imagen_tablero.place(x=(0),y=0)
@@ -1189,7 +1188,7 @@ def tirar_dados():
     
     cantidad_apuesta = 0
     cantidad_apuesta_sin_modificar = 0
-    ```
+ ```
     
     
  1. Obtiene 3 numeros aleatorios entre 1 y 6
@@ -1201,6 +1200,7 @@ def tirar_dados():
  7. Refrescamos la cantidad total de dinero
    
  Funciones por agregar 
+ 
  ```
  def calculoApuesta(args, resultado):
     
@@ -1249,8 +1249,7 @@ def tirar_dados():
     
 
     return sum(ganancia)
-################################################################
-##################### Calculo total apuestas ###################
+
 def obtener_apuesta(apuesta):
     total = []
     for i,e in enumerate(apuesta):
@@ -1258,8 +1257,7 @@ def obtener_apuesta(apuesta):
     return sum(total)
 
 
-###############################################################
-################## Diferencia ################################
+
 def diferencia(apuesta_total,ganancia_total):
     
     print(f'136 Apuesta_total {apuesta_total}')
@@ -1287,16 +1285,15 @@ def diferencia(apuesta_total,ganancia_total):
     label_ganancia.config(font=("Verdana",30))
      
     label_ganancia.place(x=500,y=630)
-###########################################################    
-######################## Dados ##############################
+    
 def pintar_dado(numero,posicion_x,posicion_y):
     
     global dados
     
     label_dado = Label(Apuesta, image=dados[numero])                      
     label_dado.place(x=posicion_x,y=posicion_y)
-############################################################
-####################### Tirar Dados ##########################
+
+ 
 def tirar_dados():
     
     global cantidad_dinero
@@ -1342,7 +1339,7 @@ def tirar_dados():
     cantidad_apuesta = 0
     cantidad_apuesta_sin_modificar = 0
     
-###################################################################
+
  ```
  
  GRACIAS POR LEER MI PROYECTO
