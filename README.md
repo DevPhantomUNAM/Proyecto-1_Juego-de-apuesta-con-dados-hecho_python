@@ -76,6 +76,7 @@ Con esto ya podemos correr nuestro programa y nos desplegara una ventada
 
 ## 4. Asignar los recursos de imagenes
 *Este codigo siempre ira antes de raiz.mainloop()*
+
 Antes de empezar a crear nuestra estructura, estaremos creando las imagenes que estaremos utilizando para nuestros frames, borones y labels.
 
 Para mandar a llamar una imagen, y redimencionarla, utilizaremos ```img = Image.open('Ficha_1')``` y despues ```img = ImageTk.PhotoImage(img)``` y con esto ya contamos con la imagen para la Ficha 1 y haremos el proceso para todas las imagenes.
@@ -101,11 +102,11 @@ img_100 = ImageTk.PhotoImage(img_100)
 
 img_tablero= Image.open('Tablero.png')
 img_tablero= ImageTk.PhotoImage(img_tablero)
-
 ```
 
 ## 5. Crear la estructura
 *Este codigo siempre ira antes de raiz.mainloop()*
+
 Para la estructura, debemos definir los lugares donde colocaremos nuestros elementos.
 
 
@@ -215,8 +216,111 @@ btn_100= Button(Apuesta,image=img_100, bg ="#fff",text='+1',command=aumentar_apu
 btn_100.place(x=370, y=120) 
 ```
 
-Ya puedes correr el código despues de haberles quitado el aparemtro command y el valor y te debe aparecer así:
+Ya puedes correr el código despues de haberles quitado el parametro command y el valor y te debe aparecer así:
 
 ![](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/assets/Botones_apuesta.png?raw=true)
 
+#### 5.1.3 Botones para apostar
 
+Estos botones se utilizaran a la hora de tu haber apostado una cantidad n de dinero, decidir a que suerte quieres apostar. 
+
+El primer boton que pondremos es el del numero 6 para explicar:
+
+```
+btn_a_6= Button(Apuesta, bg ="#fff",text='6',width=6,height=3,command=apostar_al_6) 
+btn_a_6.place(x=70, y=180) 
+```
+
+Es un boton que le estamos asignando el **texto = 6** y tambien tiene una funcion llamamada **apostar_al_6** que volvemos a repetir debe ser borrada para que el programa corra ya que aun no tenemos estas funciones creadas.
+
+Para toda la tabla de apuestas hicimos un boton correspondiente asi que ahora pintaremos cada boton.
+
+```
+btn_a_3= Button(Apuesta, bg ="#fff",text='3',width=6,height=11,command=apostar_al_3) 
+btn_a_3.place(x=17, y=180) 
+
+btn_a_6= Button(Apuesta, bg ="#fff",text='6',width=6,height=3,command=apostar_al_6) 
+btn_a_6.place(x=70, y=180) 
+
+btn_a_5= Button(Apuesta, bg ="#fff",text='5',width=6,height=3,command=apostar_al_5) 
+btn_a_5.place(x=70, y=240) 
+
+btn_a_4= Button(Apuesta, bg ="#fff",text='4',width=6,height=3,command=apostar_al_4) 
+btn_a_4.place(x=70, y=300) 
+
+btn_a_4_6= Button(Apuesta, bg ="#fff",text='4 to 6',width=6,height=3,command=apostar_al_4_to_6) 
+btn_a_4_6.place(x=70, y=360) 
+
+btn_a_inpar= Button(Apuesta, bg ="#fff",text='Inpar',width=6,height=3,command=apostar_al_inpar) 
+btn_a_inpar.place(x=70, y=420) 
+
+
+btn_a_9= Button(Apuesta, bg ="#fff",text='9',width=6,height=3,command=apostar_al_9) 
+btn_a_9.place(x=130, y=180) 
+
+btn_a_8= Button(Apuesta, bg ="#fff",text='8',width=6,height=3,command=apostar_al_8) 
+btn_a_8.place(x=130, y=240) 
+
+btn_a_7= Button(Apuesta, bg ="#fff",text='7',width=6,height=3,command=apostar_al_7) 
+btn_a_7.place(x=130, y=300) 
+
+btn_a_7_9= Button(Apuesta, bg ="#fff",text='7 to 9',width=6,height=3,command=apostar_al_7_to_9) 
+btn_a_7_9.place(x=130, y=360) 
+
+btn_a_par= Button(Apuesta, bg ="#fff",text='Par',width=6,height=3,command=apostar_al_par) 
+btn_a_par.place(x=130, y=420) 
+
+
+btn_a_12= Button(Apuesta, bg ="#fff",text='12',width=6,height=3,command=apostar_al_12) 
+btn_a_12.place(x=190, y=180) 
+
+btn_a_11= Button(Apuesta, bg ="#fff",text='11',width=6,height=3,command=apostar_al_11) 
+btn_a_11.place(x=190, y=240) 
+
+btn_a_10= Button(Apuesta, bg ="#fff",text='10',width=6,height=3,command=apostar_al_10) 
+btn_a_10.place(x=190, y=300) 
+
+btn_a_4_6= Button(Apuesta, bg ="#fff",text='10 to 12',width=6,height=3,command=apostar_al_10_to_12) 
+btn_a_4_6.place(x=190, y=360) 
+
+btn_a_rojo= Button(Apuesta, bg ="#fff",text='Rojo',width=6,height=3,command=apostar_al_rojo) 
+btn_a_rojo.place(x=190, y=420) 
+
+
+btn_a_15= Button(Apuesta, bg ="#fff",text='15',width=6,height=3,command=apostar_al_15) 
+btn_a_15.place(x=250, y=180) 
+
+btn_a_14= Button(Apuesta, bg ="#fff",text='14',width=6,height=3,command=apostar_al_14) 
+btn_a_14.place(x=250, y=240) 
+
+btn_a_13= Button(Apuesta, bg ="#fff",text='13',width=6,height=3,command=apostar_al_13) 
+btn_a_13.place(x=250, y=300) 
+
+btn_a_13_15= Button(Apuesta, bg ="#fff",text='13 to 15',width=6,height=3,command=apostar_al_13_to_15) 
+btn_a_13_15.place(x=250, y=360) 
+
+btn_a_negro= Button(Apuesta, bg ="#fff",text='Negro',width=6,height=3,command=apostar_al_negro) 
+btn_a_negro.place(x=250, y=420) 
+
+
+btn_a_18= Button(Apuesta, bg ="#fff",text='18',width=6,height=3,command=apostar_al_18) 
+btn_a_18.place(x=310, y=180) 
+
+btn_a_17= Button(Apuesta, bg ="#fff",text='17',width=6,height=3,command=apostar_al_17) 
+btn_a_17.place(x=310, y=240) 
+
+btn_a_16= Button(Apuesta, bg ="#fff",text='16',width=6,height=3,command=apostar_al_16) 
+btn_a_16.place(x=310, y=300) 
+
+btn_a_16_18= Button(Apuesta, bg ="#fff",text='16 to 18',width=6,height=3,command=apostar_al_16_to_18) 
+btn_a_16_18.place(x=310, y=360) 
+
+btn_a_18= Button(Apuesta, bg ="#fff",text='3 colum',width=6,height=3,command=apostar_al_colum_3) 
+btn_a_18.place(x=370, y=180) 
+
+btn_a_17= Button(Apuesta, bg ="#fff",text='2 colum',width=6,height=3,command=apostar_al_colum_2) 
+btn_a_17.place(x=370, y=240) 
+
+btn_a_16= Button(Apuesta, bg ="#fff",text='1 colum',width=6,height=3,command=apostar_al_colum_1) 
+btn_a_16.place(x=370, y=300) 
+```
