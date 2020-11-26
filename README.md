@@ -1,9 +1,11 @@
 # Proyecto 1 Bootcamp 
-## Juego de apuesta con dados hecho python
+## Juego de apuesta con dados hecho Python.
 
 ![](https://raw.githubusercontent.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/master/assets/Tablero_shadow.png)
 
 Videojuego diseñado para apostar a un formato donde se tiran **3 dados** y la suma del resultado de cada uno, es el valor que se determinar para un tablero donde se hacen las apuestas.
+
+[Link del proyecto gráfico en behance](https://www.behance.net/gallery/108450477/Proyecto-Bootcamp-Videojuego)
 
 ## Contenido 
 1. [Diseño de material gráfico](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#1-dise%C3%B1o-de-material-gr%C3%A1fico)
@@ -19,7 +21,7 @@ Videojuego diseñado para apostar a un formato donde se tiran **3 dados** y la s
     3. Creando instancias de botones para colocar las fichas
     4. Botones para apostar
     5. Botones para tirar dados y limpiar
-
+6. [Funcionailidad](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#6-funcionalidad)
 
 ## 1. Diseño de material gráfico
 
@@ -571,7 +573,7 @@ def apostar_al_par():
 
 Y la ponemos antes de ```Apostar_al_par()```. Lo que hace es hacer el cálculo de la apuesta empezando por la más grande de 100 y difividarlas en fichas correspondientes y se pongan en el tablero.
 
-Crear un labels100 y le colocan la imagen de la ficha correspondiente y la posición dada por los aprametros.
+* Crear un labels100 y le colocan la imagen de la ficha correspondiente y la posición dada por los aprametros.
 
 Regresnado a la función **apostar_al_par()** tenemos la instrucción ```apuesta.append([0,2,cantidad_apuesta_sin_modificar])``` 
 
@@ -1116,3 +1118,234 @@ def apostar_al_colum_1():
     
     cantidad_apuesta_sin_modificar = 0
 ```
+
+
+### 6.3 Funcionalidad para botones de tirar y limpiar
+
+Las funciones son:
+
+```
+def tirar():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    tirar_dados()
+############################################################################
+############################################################################   LIMPIAR
+def limpiar():   
+    imagen_tablero = Label(Tablero, image=img_tablero)
+    imagen_tablero.place(x=(0),y=0)
+    
+    limpiada = Label(Apuesta, width= 500, height=100,  bg ="#fff")
+    limpiada.place(x=70,y=640)
+```
+
+La función ```tirar_dados()``` 
+
+```
+def tirar_dados():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    dado_1 = random.randint(1,6)  
+    pintar_dado(dado_1,70,650)
+
+    dado_2 = random.randint(1,6) 
+    pintar_dado(dado_2,170,650)
+    
+    dado_3 = random.randint(1,6)
+    pintar_dado(dado_3,270,650)
+    
+    
+    resultado = dado_1 + dado_2 + dado_3
+    
+    limpiada = Label(Apuesta, width= 100, height=10,  bg ="#fff")
+    limpiada.place(x=380,y=650)
+    
+    
+    label_resultado = Label(Apuesta, text=resultado,  bg ="#fff")
+    label_resultado.config(font=("Verdana",35))
+    label_resultado.place(x=395,y=665)
+    
+    
+    ganancia_total = calculoApuesta(apuesta, resultado)
+    apuesta_total = obtener_apuesta(apuesta)
+    
+    print(f"202 Ganancia total: {ganancia_total}")
+    print(f"203 Apuesta total: {apuesta_total}")
+    
+    diferencia(apuesta_total,ganancia_total)
+    
+    cantidad_dinero =  cantidad_dinero + ganancia_total
+    
+    Cantidad_dinero['text'] = cantidad_dinero 
+    
+    apuesta = []
+    
+    cantidad_apuesta = 0
+    cantidad_apuesta_sin_modificar = 0
+    ```
+    
+    
+ 1. Obtiene 3 numeros aleatorios entre 1 y 6
+ 2. Se pintan los dados
+ 3. Limpia la apuesta
+ 4. Hace el cálculo de la apuesta para saber cuanto se muyltiplicara la apuesta en dado caso se gane o cuanto no se gano.
+ 5. Se obtiene la cantidad total de la apuesta para saber si se gano o se perdio
+ 5. Se hace la diferencia y se pinta
+ 7. Refrescamos la cantidad total de dinero
+   
+ Funciones por agregar 
+ ```
+ def calculoApuesta(args, resultado):
+    
+    ganancia = [0]    
+    par = resultado % 2
+    
+    
+    print(f'90 Apuestas {args}')
+    print(f'91 Resultado {resultado}')
+    print(f'92 Numero Par: {par}' )
+    
+    #Columnas  
+    
+    columnas = [[4,7,10,13,16],[5,8,11,14,17],[6,9,12,15,18]]
+    filas = [[4,5,6],[7,8,9],[10,11,12],[13,14,15],[16,17,19]]
+    
+    for i,e in enumerate(args):
+        
+        if e[0] == 0:
+            if e[1] == 1 and par == 1:
+                ganancia.append(e[2]*2)
+            elif e[1] == 2 and par == 0:
+                ganancia.append(e[2]*2)
+                
+                
+                
+        if e[0] == 1:            
+            if e[1] == 1 and par == 1:                
+                ganancia.append(e[2]*2)
+            elif e[1] == 2 and par == 0:                
+                ganancia.append(e[2]*2)   
+    
+        if e[0]==2:
+            
+            if resultado in filas[e[1]]:              
+                ganancia.append(e[2]*8)
+                
+        if e[0]==3:     
+            if resultado in columnas[e[1]]:    
+                ganancia.append(e[2]*4)
+                
+        if e[0]==4:     
+            if resultado == e[1]:    
+                ganancia.append(e[2]*35)
+    
+    
+
+    return sum(ganancia)
+################################################################
+##################### Calculo total apuestas ###################
+def obtener_apuesta(apuesta):
+    total = []
+    for i,e in enumerate(apuesta):
+        total.append(e[2])
+    return sum(total)
+
+
+###############################################################
+################## Diferencia ################################
+def diferencia(apuesta_total,ganancia_total):
+    
+    print(f'136 Apuesta_total {apuesta_total}')
+    print(f'137 Ganancia Total {ganancia_total}')
+    
+    label_resultado_text = 'Apostaste: $' + str(apuesta_total)
+    
+    
+    label_resultado = Label(Tablero,text = label_resultado_text) 
+    label_resultado.config(font=("Verdana",30))
+    label_resultado.place(x=100,y=630)
+    
+    
+    
+    label_ganancia = Label(Tablero) 
+    
+    
+    if apuesta_total < ganancia_total:
+        label_text = "Ganaste: $" + str(ganancia_total)
+        label_ganancia['text'] = label_text
+    else:
+        label_text = "Perdiste: $" + str(ganancia_total)
+        label_ganancia['text'] = label_text
+    
+    label_ganancia.config(font=("Verdana",30))
+     
+    label_ganancia.place(x=500,y=630)
+###########################################################    
+######################## Dados ##############################
+def pintar_dado(numero,posicion_x,posicion_y):
+    
+    global dados
+    
+    label_dado = Label(Apuesta, image=dados[numero])                      
+    label_dado.place(x=posicion_x,y=posicion_y)
+############################################################
+####################### Tirar Dados ##########################
+def tirar_dados():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    dado_1 = random.randint(1,6)  
+    pintar_dado(dado_1,70,650)
+
+    dado_2 = random.randint(1,6) 
+    pintar_dado(dado_2,170,650)
+    
+    dado_3 = random.randint(1,6)
+    pintar_dado(dado_3,270,650)
+    
+    
+    resultado = dado_1 + dado_2 + dado_3
+    
+    limpiada = Label(Apuesta, width= 100, height=10,  bg ="#fff")
+    limpiada.place(x=380,y=650)
+    
+    
+    label_resultado = Label(Apuesta, text=resultado,  bg ="#fff")
+    label_resultado.config(font=("Verdana",35))
+    label_resultado.place(x=395,y=665)
+    
+    
+    ganancia_total = calculoApuesta(apuesta, resultado)
+    apuesta_total = obtener_apuesta(apuesta)
+    
+    print(f"202 Ganancia total: {ganancia_total}")
+    print(f"203 Apuesta total: {apuesta_total}")
+    
+    diferencia(apuesta_total,ganancia_total)
+    
+    cantidad_dinero =  cantidad_dinero + ganancia_total
+    
+    Cantidad_dinero['text'] = cantidad_dinero 
+    
+    apuesta = []
+    
+    cantidad_apuesta = 0
+    cantidad_apuesta_sin_modificar = 0
+    
+###################################################################
+ ```
+ 
+ GRACIAS POR LEER MI PROYECTO
+ 
+ Te dejo mis redes:
+ [Behance](https://www.behance.net/DanielCarmonaPhantom)
