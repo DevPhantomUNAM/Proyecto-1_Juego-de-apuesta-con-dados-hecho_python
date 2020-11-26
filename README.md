@@ -6,7 +6,7 @@
 Videojuego diseñado para apostar a un formato donde se tiran **3 dados** y la suma del resultado de cada uno, es el valor que se determinar para un tablero donde se hacen las apuestas.
 
 ## Contenido 
-1. Diseño de material gráfico
+1. [Diseño de material gráfico](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#1-dise%C3%B1o-de-material-gr%C3%A1fico)
     1. Diseño del tablero
     2. Diseño de las fichas para apostar 
     3. Diseño de los 6 dados
