@@ -10,8 +10,8 @@ Videojuego diseñado para apostar a un formato donde se tiran **3 dados** y la s
     1. Diseño del tablero
     2. Diseño de las fichas para apostar 
     3. Diseño de los 6 dados
-2. Librerias
-3. Crear Interfaz base
+2. [Librerias](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#2-librerias)
+3. [Crear Interfaz base](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#3-crear-interfaz-base)
 4. Asignar los recursos de imagenes
 5. Crear la estructura
     1. Apuesta
