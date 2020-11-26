@@ -11,10 +11,15 @@ Videojuego diseñado para apostar a un formato donde se tiran **3 dados** y la s
     2. Diseño de las fichas para apostar 
     3. Diseño de los 6 dados
 2. Librerias
+3. Crear Interfaz base
+4. Asignar los recursos de imagenes
+5. Crear la estructura
+    1. Apuesta
+    2. Labels de Dinero y apuesta
+    3. Creando instancias de botones para colocar las fichas
+    4. Botones para apostar
+    5. Botones para tirar dados y limpiar
 
-
-1. Diseño de material gráfico para el videojuego.
-2. Librerias
 
 ## 1. Diseño de material gráfico
 
