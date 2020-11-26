@@ -371,7 +371,7 @@ Ahora empezaremos a dar la funcionalidad a cada botón.
 
 Cada botón de ficha debe de subir el valor de la apuesta y dismunuir el dinero total, así que crearemos variables que estaremos pasando entre funciones.
 
-Definimos estas varaibles despues del apartado 3 en especial la linea ```raiz.geometry('1401x800') ```
+Definimos estas varaibles despues del [apartado 3](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#3-crear-interfaz-base) en especial la linea ```raiz.geometry('1401x800') ```
 
 ```
 #Variables 
@@ -612,15 +612,15 @@ V2: Modo de apuesta dependiendo de V1
   2:  2: Columnas correspondientes al aparatodo 1.1
   
   
-  3:  0: Filas correspondientes al apartado 1.1
+  3:  0: Filas correspondientes al [apartado 1.1 ](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#11-dise%C3%B1o-del-tablero)
   
-  3:  1: Filas correspondientes al apartado 1.1
+  3:  1: Filas correspondientes al [apartado 1.1 ](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#11-dise%C3%B1o-del-tablero)
   
-  3:  2: Filas correspondientes al apartado 1.1
+  3:  2: Filas correspondientes al [apartado 1.1 ](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#11-dise%C3%B1o-del-tablero)
   
-  3:  3: Filas correspondientes al apartado 1.1
+  3:  3: Filas correspondientes al [apartado 1.1 ](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#11-dise%C3%B1o-del-tablero)
   
-  3:  4: Filas correspondientes al apartado 1.1
+  3:  4: Filas correspondientes al [apartado 1.1 ](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/README.md#11-dise%C3%B1o-del-tablero)
   
   4:  1: Apuesta correspondiente a Numero 1
   ...
