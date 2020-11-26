@@ -133,10 +133,10 @@ Para el Frame de apuesta, defini cuales son los elementos que deben aparecer al 
 * Dinero por apostar
 * Botones para poner la cantidad a apostar ( Se hizo de esta manera para mantener la experiencia de poner las fichas directo en el tablero)
 * Botones para elegir a que apostar que estos se componen (Mencionados en la sección 1.1)
-* Un boton para tirar dados
-* Un boton para limpiar tablero
+* Un botón para tirar dados
+* Un botón para limpiar tablero
 
-#### 5.1.1 Labels de Dinero y apuesta
+#### 5.2 Labels de Dinero y apuesta
 
 Para pintar los 6 labels que usaremos (2 para el texto "Dinero" y "Apuesta", 2 para los signos "$" y los ultimos 2 que seran dinámicos para mostrar sus respectivos estados
 
@@ -175,7 +175,7 @@ Corre el código y ya te debe aparecer así.
 ![](https://raw.githubusercontent.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/master/assets/Labels_dinero.png)
 
 
-#### 5.1.2 Creando instancias de botones para colocar las fichas
+#### 5.3 Creando instancias de botones para colocar las fichas
 *Este codigo siempre ira antes de raiz.mainloop()*
 
 Para crear un botton, utilizamos la instancia **Button** que al igual que label, tambien recibe parametros para su configuración.
@@ -184,7 +184,7 @@ Para crear un botton, utilizamos la instancia **Button** que al igual que label,
 btn_1= Button(Apuesta,image=img, bg ="#fff",text='+1',command=aumentar_apuesta_1) 
 btn_1.place(x=70, y=120) 
 ```
-Este boton tiene una llamada a una función ```command = aumentar_apuesta_1``` por el momento la puedes borrar pero para que puedas visualizar que de esta forma, más adelante estaremos mandando a llamar las funciones correwspondientes a cada boton.
+Este botón tiene una llamada a una función ```command = aumentar_apuesta_1``` por el momento la puedes borrar pero para que puedas visualizar que de esta forma, más adelante estaremos mandando a llamar las funciones correwspondientes a cada botón.
 
 Quedaria así:
 
@@ -220,20 +220,20 @@ Ya puedes correr el código despues de haberles quitado el parametro command y e
 
 ![](https://github.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/blob/master/assets/Botones_apuesta.png?raw=true)
 
-#### 5.1.3 Botones para apostar
+#### 5.4 Botones para apostar
 
 Estos botones se utilizaran a la hora de tu haber apostado una cantidad n de dinero, decidir a que suerte quieres apostar. 
 
-El primer boton que pondremos es el del numero 6 para explicar:
+El primer botón que pondremos es el del numero 6 para explicar:
 
 ```
 btn_a_6= Button(Apuesta, bg ="#fff",text='6',width=6,height=3,command=apostar_al_6) 
 btn_a_6.place(x=70, y=180) 
 ```
 
-Es un boton que le estamos asignando el **texto = 6** y tambien tiene una funcion llamamada **apostar_al_6** que volvemos a repetir debe ser borrada para que el programa corra ya que aun no tenemos estas funciones creadas.
+Es un botón que le estamos asignando el **texto = 6** y tambien tiene una función llamamada **apostar_al_6** que volvemos a repetir: debe ser borrada para que el programa corra ya que aun no tenemos estas funciones creadas.
 
-Para toda la tabla de apuestas hicimos un boton correspondiente asi que ahora pintaremos cada boton.
+Para toda la tabla de apuestas hicimos un botón correspondiente asi que ahora pintaremos cada botón.
 
 ```
 btn_a_3= Button(Apuesta, bg ="#fff",text='3',width=6,height=11,command=apostar_al_3) 
@@ -323,4 +323,766 @@ btn_a_17.place(x=370, y=240)
 
 btn_a_16= Button(Apuesta, bg ="#fff",text='1 colum',width=6,height=3,command=apostar_al_colum_1) 
 btn_a_16.place(x=370, y=300) 
+```
+
+Podemos correr el código
+
+![](https://raw.githubusercontent.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/master/assets/Apuesta_botones.png)
+
+
+#### 5.5 Botones para tirar dados y limpiar
+
+Una vez que ya se aposto dinero a una suerte, necesitaremos el botón para aventar los dados.
+
+```
+tirar= Button(Apuesta, bg ="#fff",text='Tirar dados',command= tirar_dados) 
+tirar.config(font=("Verdana",20))
+tirar.place(x=150, y=480) 
+```
+
+Tambien un botón para limpiar el tablero 
+
+```
+tirar= Button(Apuesta, bg ="#fff",text='Limpiar',command= limpiar) 
+tirar.config(font=("Verdana",20))
+tirar.place(x=170, y=540) 
+```
+
+Le borramos los **command** y corremos:
+
+![](https://raw.githubusercontent.com/DevPhantomUNAM/Proyecto-1_Juego-de-apuesta-con-dados-hecho_python/master/assets/Tirar_dados.png)
+
+## 6 Funcionalidad.
+
+Ahora empezaremos a dar la funcionalidad a cada botón. 
+
+### 6.1 Funcionalidad para botones de fichas
+
+Cada botón de ficha debe de subir el valor de la apuesta y dismunuir el dinero total, así que crearemos variables que estaremos pasando entre funciones.
+
+Definimos estas varaibles despues del apartado 3 en especial la linea ```raiz.geometry('1401x800') ```
+
+```
+#Variables 
+cantidad_dinero = 1000
+cantidad_apuesta = 0
+cantidad_apuesta_sin_modificar = 0
+
+apuesta = []
+```
+
+y ahora crearemos una funcion para aumentar la apuesta cada que aumentamos una ficha
+
+```
+def aumentar_apuesta_1():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    
+    if cantidad_apuesta <=(cantidad_dinero-1):       
+        cantidad_apuesta = cantidad_apuesta + 1
+        cantidad_apuesta_sin_modificar = cantidad_apuesta_sin_modificar + 1
+        Cantidad_apuesta['text'] = cantidad_apuesta
+```
+
+Estamos utilizando 2 variables que cambian ```cantidad_apuesta``` y ```cantidad_apuesta_sin_modificar``` que se utilizaran para el label Apuesta y el calculo de fichas a poner. Tambien evaluaremos que si aun podemos apostar siempre y cuando no exeda el dinero total.
+
+Y crearemos las funciones para las funcionales Ficha 1, 5, 10, 25, 50 y 100
+
+```
+def aumentar_apuesta_1():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    
+    if cantidad_apuesta <=(cantidad_dinero-1):       
+        cantidad_apuesta = cantidad_apuesta + 1
+        cantidad_apuesta_sin_modificar = cantidad_apuesta_sin_modificar + 1
+        Cantidad_apuesta['text'] = cantidad_apuesta
+    
+def aumentar_apuesta_5():    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    
+    if cantidad_apuesta <=(cantidad_dinero-5):       
+        cantidad_apuesta = cantidad_apuesta + 5
+        cantidad_apuesta_sin_modificar = cantidad_apuesta_sin_modificar + 5
+        Cantidad_apuesta['text'] = cantidad_apuesta
+
+def aumentar_apuesta_10():    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    
+    if cantidad_apuesta <=(cantidad_dinero-10):       
+        cantidad_apuesta = cantidad_apuesta + 10
+        cantidad_apuesta_sin_modificar = cantidad_apuesta_sin_modificar + 10
+        Cantidad_apuesta['text'] = cantidad_apuesta
+        
+def aumentar_apuesta_25():    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    
+    if cantidad_apuesta <=(cantidad_dinero-25):       
+        cantidad_apuesta = cantidad_apuesta + 25
+        cantidad_apuesta_sin_modificar = cantidad_apuesta_sin_modificar + 25
+        Cantidad_apuesta['text'] = cantidad_apuesta
+        
+def aumentar_apuesta_50():    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    
+    if cantidad_apuesta <=(cantidad_dinero-50):       
+        cantidad_apuesta = cantidad_apuesta + 50
+        cantidad_apuesta_sin_modificar = cantidad_apuesta_sin_modificar + 50
+        Cantidad_apuesta['text'] = cantidad_apuesta
+        
+def aumentar_apuesta_100():    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    
+    if cantidad_apuesta <=(cantidad_dinero-100):       
+        cantidad_apuesta = cantidad_apuesta + 100
+        cantidad_apuesta_sin_modificar = cantidad_apuesta_sin_modificar + 100
+        Cantidad_apuesta['text'] = cantidad_apuesta
+```
+
+Recuerdas que borramos las funciones de los botones, en la sección 5.1.2 puedes volver a copiarlos y ahora correr el programa y veras que aumenta nuestra apuesta.
+
+### 6.2 Funcionalidad para botones de fichas
+
+Usaremos el ejemplo del botón "Apostar a para" para exlicar su funcionailidad.
+
+El botón manda a llamar la función ```apostar_al_par()```
+
+```
+def apostar_al_par():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(295,515)
+    print(f'606 Se aposto {cantidad_apuesta_sin_modificar} a par')
+    apuesta.append([0,2,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+ ```
+1. Lo primero que hacemos es restarle al dinero total, el dinero de la apuesta y resetear el dinero de la apuesta
+2. Mandamos a llamar la función ```poner_fichas(x,y)``` y lo que hace la funcion poner_fichas es obtener la posición de donde se deben poner las fichas apostadas asi que veremos la función poner_fichas
+ ```
+ def poner_fichas(posicion_x,posicion_y):
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    print(f'222 Cantidad Apuesta: {cantidad_apuesta}')
+    
+    
+    if cantidad_apuesta >= 100:
+        fichas = int(cantidad_apuesta/100)       
+        labels100 = []
+        aumentador = 0
+        for i in range(fichas): 
+            labels100.append(0) 
+            labels100[i] = Label(Tablero, image=img_100)
+            ubicacion = posicion_x +aumentador
+            labels100[i].place(x=ubicacion,y=posicion_y)
+            aumentador += 7
+        posicion_x = posicion_x + aumentador
+        cantidad_apuesta = cantidad_apuesta - (fichas*100)
+        
+    if cantidad_apuesta >= 50:
+        fichas = int(cantidad_apuesta/50)       
+        labels50 = []
+        aumentador = 0
+        for i in range(fichas):
+            labels50.append(0) 
+            labels50[i] = Label(Tablero, image=img_50)
+            ubicacion = posicion_x +aumentador
+            labels50[i].place(x=ubicacion,y=posicion_y)
+            aumentador += 7
+        posicion_x = posicion_x + aumentador
+        cantidad_apuesta = cantidad_apuesta - 50
+        
+    if cantidad_apuesta >= 25:  
+        aumentador = 0
+        labels25 = Label(Tablero, image=img_25)   
+        ubicacion = posicion_x +aumentador
+        labels25.place(x=ubicacion,y=posicion_y)
+        aumentador += 7
+        posicion_x = posicion_x + aumentador 
+        cantidad_apuesta = cantidad_apuesta - 25
+        
+    if cantidad_apuesta >= 10:
+        fichas = int(cantidad_apuesta/10)              
+        labels100 = []       
+        aumentador = 0    
+        for i in range(fichas):       
+            labels100.append(0)      
+            labels100[i] = Label(Tablero, image=img_10)         
+            ubicacion = posicion_x +aumentador            
+            labels100[i].place(x=ubicacion,y=posicion_y)
+            aumentador += 7
+        posicion_x = posicion_x + aumentador
+        cantidad_apuesta = cantidad_apuesta - (fichas*10)
+        
+    if cantidad_apuesta >= 5:  
+        aumentador = 0
+        labels25 = Label(Tablero, image=img_5)   
+        ubicacion = posicion_x +aumentador
+        labels25.place(x=ubicacion,y=115)
+        aumentador += 7
+        posicion_x = posicion_x + aumentador 
+        cantidad_apuesta = cantidad_apuesta - 5
+        
+    if cantidad_apuesta >= 1:
+        fichas = cantidad_apuesta           
+        labels100 = []       
+        aumentador = 0    
+        for i in range(fichas):       
+            labels100.append(0)      
+            labels100[i] = Label(Tablero, image=img)         
+            ubicacion = posicion_x +aumentador            
+            labels100[i].place(x=ubicacion,y=posicion_y)
+            aumentador += 7            
+        posicion_x = posicion_x + aumentador
+        cantidad_apuesta = cantidad_apuesta - (fichas*1)
+ ```
+
+Y la ponemos antes de ```Apostar_al_par()```. Lo que hace es hacer el calculo de la apuesta empezando por la más grande de 100 y difividarlas en fichas correspondientes y se pongan en el tablero.
+
+Crear un labels100 y le colocan la imagen de la ficha correspondiente y la posición dada por los aprametros.
+
+Regresnado a la función **apostar_al_par()** tenemos la instrucción ```apuesta.append([0,2,cantidad_apuesta_sin_modificar])``` 
+
+Lo que hicimos fue crear una lista *Apuesta* donde se metieran todas las apuestas que se hacian, dando la posibilidad de apostar a más opciones como en la ruleta.
+
+Nuestro formato es el sigueinte:
+
+La apuesta consiste en una lista de 3 elementos [v1,v2,v3] donde:
+
+V1: Es el tipo de apuesta:
+  0: A Pares y Nones
+  1: A color
+  2: A fila
+  3: A Columna
+  4: A Numero
+V2: Modo de apuesta dependiendo de V1
+  0:  1: Al inpar
+  0:  2: Al par
+  
+  1:  1: A color Negro
+  1:  2: A color Rojo
+  
+  2:  0: Columnas correspondientes al aparatodo 1.1
+  2:  1: Columnas correspondientes al aparatodo 1.1
+  2:  2: Columnas correspondientes al aparatodo 1.1
+  
+  3:  0: Filas correspondientes al apartado 1.1
+  3:  1: Filas correspondientes al apartado 1.1
+  3:  2: Filas correspondientes al apartado 1.1
+  3:  3: Filas correspondientes al apartado 1.1
+  3:  4: Filas correspondientes al apartado 1.1
+  
+  4:  1: Apuesta correspondiente a Numero 1
+  ...
+
+V3: El valor de apuesta que se le hacia
+  [0,1,500]  Se hacia una apuesta a Pares y Nones, apostandole al Inpar y apostando 500
+  
+Así que se sumaran cada una de las apuestas en la lista
+
+Example
+```
+Apuesta = [[0,2,300],[2.2.300]]
+```
+
+Y por ultimo se resetea el contador de apuestas.
+
+**Todos los botones tienen el mismo formato**
+
+Estos son las funciones para todos los botones:
+
+```
+def apostar_al_3():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(100,115)
+    
+    print(f'321 Se aposto {cantidad_apuesta_sin_modificar} al 3')
+    apuesta.append([4,3,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_6():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(205,115)
+    
+    print(f'338 Se aposto {cantidad_apuesta_sin_modificar} al 6')
+    apuesta.append([4,6,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_9():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(300,115)
+    
+    print(f'354 Se aposto {cantidad_apuesta_sin_modificar} al 9')
+    apuesta.append([4,9,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_12():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(400,115)
+    
+    print(f'470 Se aposto {cantidad_apuesta_sin_modificar} al 12')
+    apuesta.append([4,12,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_15():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(500,115)
+    
+    print(f'387 Se aposto {cantidad_apuesta_sin_modificar} al 15')
+    apuesta.append([4,15,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_18():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(600,115)
+    
+    print(f'403 Se aposto {cantidad_apuesta_sin_modificar} al 18')
+    apuesta.append([4,18,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+    
+## Segunda Columna
+
+def apostar_al_5():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(205,215)
+    
+    print(f'422 Se aposto {cantidad_apuesta_sin_modificar} al 5')
+    apuesta.append([4,5,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_8():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(300,215)
+    
+    print(f'438 Se aposto {cantidad_apuesta_sin_modificar} al 8')
+    apuesta.append([4,8,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_11():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(400,215)
+    
+    print(f'454 Se aposto {cantidad_apuesta_sin_modificar} al 11')
+    apuesta.append([4,11,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_14():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(500,215)
+    
+    print(f'471 Se aposto {cantidad_apuesta_sin_modificar} al 14')
+    apuesta.append([4,14,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_17():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(600,215)
+    
+    print(f'487 Se aposto {cantidad_apuesta_sin_modificar} al 17')
+    apuesta.append([4,17,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+    
+## TERCERA COLUMNA
+
+def apostar_al_4():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(205,315)
+    
+    print(f'506 Se aposto {cantidad_apuesta_sin_modificar} al 4')
+    apuesta.append([4,4,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_7():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(300,315)
+    
+    print(f'522 Se aposto {cantidad_apuesta_sin_modificar} al 7')
+    apuesta.append([4,7,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_10():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(400,315)
+    
+    print(f'538 Se aposto {cantidad_apuesta_sin_modificar} al 10')
+    apuesta.append([4,10,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_13():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(500,315)
+    
+    print(f'555 Se aposto {cantidad_apuesta_sin_modificar} al 13')
+    apuesta.append([4,13,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+def apostar_al_16():
+    global cantidad_apuesta_sin_modificar
+    global cantidad_dinero
+    global cantidad_apuesta
+    global apuesta
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    
+    poner_fichas(600,315)
+    
+    print(f'571 Se aposto {cantidad_apuesta_sin_modificar} al 16')
+    apuesta.append([4,16,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+
+        
+def apostar_al_inpar():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(205,515)
+    
+    
+    print(f'590 Se aposto {cantidad_apuesta_sin_modificar} a impar')
+    apuesta.append([0,1,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+
+def apostar_al_par():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(295,515)
+    print(f'606 Se aposto {cantidad_apuesta_sin_modificar} a par')
+    apuesta.append([0,2,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_rojo():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(400,515)
+
+    print(f'623 Se aposto {cantidad_apuesta_sin_modificar} a rojo')
+    apuesta.append([1,2,cantidad_apuesta_sin_modificar])
+    cantidad_apuesta_sin_modificar = 0
+
+def apostar_al_negro():
+    
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(500,515)
+
+    print(f'640 Se aposto {cantidad_apuesta_sin_modificar} a negro')
+    apuesta.append([1,1,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_4_to_6():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(205,415)
+
+    print(f'657 Se aposto {cantidad_apuesta_sin_modificar} a 4_to_6')
+    apuesta.append([2,0,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_7_to_9():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(300,415)
+
+    print(f'674 Se aposto {cantidad_apuesta_sin_modificar} a 7_to_9')
+    apuesta.append([2,1,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_10_to_12():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(400,415)
+
+    print(f'691 Se aposto {cantidad_apuesta_sin_modificar} a 10_to_12')
+    apuesta.append([2,2,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+
+def apostar_al_13_to_15():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(500,415)
+
+    print(f'708 Se aposto {cantidad_apuesta_sin_modificar} a 13_to_15')
+    apuesta.append([2,3,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_16_to_18():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(590,415)
+
+    print(f'725 Se aposto {cantidad_apuesta_sin_modificar} a 16_to_18')
+    apuesta.append([2,4,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_colum_3():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(700,100)
+
+    print(f'742 Se aposto {cantidad_apuesta_sin_modificar} a la columna 3')
+    apuesta.append([3,2,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+
+def apostar_al_colum_2():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(700,200)
+
+    print(f'Se aposto {cantidad_apuesta_sin_modificar} a la columna 2')
+    apuesta.append([3,1,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
+    
+def apostar_al_colum_1():
+    global cantidad_dinero
+    global cantidad_apuesta
+    global cantidad_apuesta_sin_modificar
+    global apuesta
+    
+    
+    cantidad_dinero = cantidad_dinero - cantidad_apuesta
+    Cantidad_dinero['text'] = cantidad_dinero
+    Cantidad_apuesta['text'] = 0
+    poner_fichas(700,300)
+
+    print(f'776 Se aposto {cantidad_apuesta_sin_modificar} a la columna 1')
+    apuesta.append([3,1,cantidad_apuesta_sin_modificar])
+    
+    cantidad_apuesta_sin_modificar = 0
 ```
